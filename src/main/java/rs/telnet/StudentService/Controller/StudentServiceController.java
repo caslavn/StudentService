@@ -1,0 +1,53 @@
+package rs.telnet.StudentService.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import rs.telnet.StudentService.Model.Students;
+import rs.telnet.StudentService.Service.ServiceInterface;
+
+import javax.management.Query;
+import java.util.List;
+
+@RestController
+@RequestMapping(path="/demo")
+public class StudentServiceController {
+
+    private ServiceInterface serviceInterface;
+
+    @Autowired
+    public StudentServiceController(ServiceInterface theserviceinterface){
+        serviceInterface = theserviceinterface;
+    }
+
+    @GetMapping(value = "/students")
+    public ResponseEntity<List<Students>> findAll(){
+        System.out.println(serviceInterface.findAllStudents().size());
+        return new ResponseEntity<List<Students>>(serviceInterface.findAllStudents(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/students")
+    public Students addStudents(@RequestBody Students theStudents){
+        return (serviceInterface.saveStudents(theStudents));
+    }
+
+    @PutMapping(value = "/students")
+    public Students updateStudents(@RequestBody Students theStudents){
+        Students students = serviceInterface.findStudentsByIndex(theStudents.getIndexNumber());
+        if (students == null){
+            throw new RuntimeException("Student to update doesn't exist.");
+        }
+        return (serviceInterface.saveStudents(theStudents));
+    }
+
+    @DeleteMapping(value = "students/{indexNumber}")
+    public String deleteStudents(@PathVariable String indexNumber){
+        Students tempStudents  = serviceInterface.findStudentsByIndex(indexNumber);
+        if (tempStudents == null) {
+            throw new RuntimeException("Student's index not found.");
+        }
+        serviceInterface.deleteStudentsByIndex(indexNumber);
+        return "deleted student indexNumber" + indexNumber;
+    }
+}
