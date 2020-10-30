@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface StudentServiceDAO {
 
-    List<Students> getAllStudents();
+     List<Students> getAllStudents();
 
-    Students findAllStudentsByIndex(String theIndex);
+     Students findAllStudentsByIndex(String theIndex);
 
-    Students saveStudents(Students theStudents);
+     Students saveStudents(Students theStudents);
 
-    void deleteStudentsByIndex(String theIndex);
+     void deleteStudentsByIndex(String theIndex);
 }

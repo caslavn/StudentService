@@ -6,6 +6,7 @@ import rs.telnet.StudentService.Model.Students;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -18,11 +19,9 @@ public class StudentServiceDAOJpaImpl implements StudentServiceDAO{
         this.entityManager = entityManager;
     }
 
-    public StudentServiceDAOJpaImpl() {
-        super();
-    }
 
     @Override
+    @Transactional
     public List<Students> getAllStudents() {
         Query theQuery = (Query) entityManager.createQuery("From Students");
         List<Students> students = theQuery.getResultList();
@@ -30,12 +29,14 @@ public class StudentServiceDAOJpaImpl implements StudentServiceDAO{
     }
 
     @Override
+    @Transactional
     public Students findAllStudentsByIndex(String theIndex) {
         Students theStudents = entityManager.find(Students.class, theIndex);
         return theStudents;
     }
 
     @Override
+    @Transactional
     public Students saveStudents(Students theStudents) {
         Students studentsServiceDB = entityManager.merge(theStudents);
         theStudents.setIndexNumber(studentsServiceDB.getIndexNumber());
@@ -43,6 +44,7 @@ public class StudentServiceDAOJpaImpl implements StudentServiceDAO{
     }
 
     @Override
+    @Transactional
     public void deleteStudentsByIndex(String theIndex) {
         Query theQuery = (Query) entityManager.createQuery("delete from Students where theIndex=:indexNumber");
         theQuery.setParameter("theIndex", theIndex);
