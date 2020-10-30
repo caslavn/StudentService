@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Table(name = "Students")
 public class Students {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "indexNumber")
     private Integer indexNumber;
 
