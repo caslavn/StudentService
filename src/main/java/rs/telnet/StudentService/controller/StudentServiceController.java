@@ -1,19 +1,19 @@
-package rs.telnet.StudentService.Controller;
+package rs.telnet.StudentService.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.telnet.StudentService.Model.Students;
-import rs.telnet.StudentService.Service.ServiceInterface;
+import rs.telnet.StudentService.model.Students;
+import rs.telnet.StudentService.service.ServiceInterface;
 
-import javax.management.Query;
 import java.util.List;
 
 @RestController
 @RequestMapping(path="/demo")
 public class StudentServiceController {
 
+    @Autowired
     private ServiceInterface serviceInterface;
 
     @Autowired
@@ -21,18 +21,18 @@ public class StudentServiceController {
         serviceInterface = theserviceinterface;
     }
 
-    @GetMapping(value = "/students")
+    @RequestMapping(value = "/students", method = RequestMethod.GET)
     public ResponseEntity<List<Students>> findAll(){
         System.out.println(serviceInterface.findAllStudents().size());
         return new ResponseEntity<List<Students>>(serviceInterface.findAllStudents(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/students")
+    @RequestMapping(value = "/students", method = RequestMethod.POST)
     public Students addStudents(@RequestBody Students theStudents){
         return (serviceInterface.saveStudents(theStudents));
     }
 
-    @PutMapping(value = "/students")
+    @RequestMapping(value = "/students", method = RequestMethod.PUT)
     public Students updateStudents(@RequestBody Students theStudents){
         Students students = serviceInterface.findStudentsByIndex(theStudents.getIndexNumber());
         if (students == null){
@@ -41,7 +41,7 @@ public class StudentServiceController {
         return (serviceInterface.saveStudents(theStudents));
     }
 
-    @DeleteMapping(value = "students/{indexNumber}")
+    @RequestMapping(value = "/students/{indexNumber}", method = RequestMethod.DELETE)
     public String deleteStudents(@PathVariable String indexNumber){
         Students tempStudents  = serviceInterface.findStudentsByIndex(indexNumber);
         if (tempStudents == null) {

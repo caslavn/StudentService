@@ -1,6 +1,6 @@
-package rs.telnet.StudentService.Service;
+package rs.telnet.StudentService.service;
 
-import rs.telnet.StudentService.Model.Students;
+import rs.telnet.StudentService.model.Students;
 
 import java.util.List;
 

@@ -1,20 +1,21 @@
-package rs.telnet.StudentService.Service;
+package rs.telnet.StudentService.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import rs.telnet.StudentService.Dao.StudentServiceDAO;
-import rs.telnet.StudentService.Model.Students;
+import rs.telnet.StudentService.dao.StudentServiceDAO;
+import rs.telnet.StudentService.model.Students;
 
 import java.util.List;
 
 @Service
 public class ServiceImpl implements ServiceInterface {
+
     StudentServiceDAO studentServiceDAO;
 
         @Autowired
-        public ServiceImpl(@Qualifier("StudentServiceDAOJpaImpl") StudentServiceDAO theStudentServiceDao){
+        public ServiceImpl(@Qualifier("studentServiceDAOJpaImpl") StudentServiceDAO theStudentServiceDao){
             studentServiceDAO = theStudentServiceDao;
         }
 

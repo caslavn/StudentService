@@ -1,4 +1,4 @@
-package rs.telnet.StudentService.Model;
+package rs.telnet.StudentService.model;
 
 import javax.persistence.*;
 
@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "Students")
 public class Students {
 
+    @Id
     @Column(name = "indexNumber")
     private String indexNumber;
 
