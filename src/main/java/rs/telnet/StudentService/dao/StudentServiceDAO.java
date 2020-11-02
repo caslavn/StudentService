@@ -1,6 +1,6 @@
-package rs.telnet.StudentService.Dao;
+package rs.telnet.StudentService.dao;
 
-import rs.telnet.StudentService.Model.Students;
+import rs.telnet.StudentService.model.Students;
 import java.util.List;
 
 public interface StudentServiceDAO {
@@ -9,7 +9,7 @@ public interface StudentServiceDAO {
 
      Students findAllStudentsByIndex(String theIndex);
 
-     Students saveStudents(Students theStudents);
+     Students  saveStudents(Students theStudents);
 
      void deleteStudentsByIndex(String theIndex);
 }
