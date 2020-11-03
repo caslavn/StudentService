@@ -42,8 +42,8 @@ public class StudentServiceDAOJpaImpl implements StudentServiceDAO{
 
     @Override
     public void deleteStudentsByIndex(String theIndex) {
-        Query theQuery = (Query) entityManager.createQuery("delete from Students where theIndex=:indexNumber");
-        theQuery.setParameter("theIndex", theIndex);
+        Query theQuery = (Query) entityManager.createQuery("delete from Students where id=:studentsId");
+        theQuery.setParameter("studentsId", theIndex);
         theQuery.executeUpdate();
     }
 }
