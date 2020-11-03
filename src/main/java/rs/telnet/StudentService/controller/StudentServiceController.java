@@ -41,13 +41,15 @@ public class StudentServiceController {
         return (serviceInterface.saveStudents(theStudents));
     }
 
-    @RequestMapping(value = "/students/{indexNumber}", method = RequestMethod.DELETE)
-    public String deleteStudents(@PathVariable String indexNumber){
-        Students tempStudents  = serviceInterface.findStudentsByIndex(indexNumber);
-        if (tempStudents == null) {
+    @RequestMapping(value = "/students", method = RequestMethod.DELETE)
+    public String deleteStudents(@RequestParam String studentsId){
+        Students students  = serviceInterface.findStudentsByIndex(studentsId);
+        if (students == null) {
             throw new RuntimeException("Student's index not found.");
         }
-        serviceInterface.deleteStudentsByIndex(indexNumber);
-        return "deleted student indexNumber" + indexNumber;
+        serviceInterface.deleteStudentsByIndex(studentsId );
+        return "deleted student indexNumber" + studentsId;
     }
+
+
 }
