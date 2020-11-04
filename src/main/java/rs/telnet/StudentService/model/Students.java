@@ -1,6 +1,7 @@
 package rs.telnet.StudentService.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Students")
@@ -50,4 +51,7 @@ public class Students {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @OneToMany(mappedBy = "student")
+    Set<Exam> exams;
 }
