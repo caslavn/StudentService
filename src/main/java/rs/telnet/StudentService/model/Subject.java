@@ -1,6 +1,7 @@
 package rs.telnet.StudentService.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "subject")
@@ -29,5 +30,8 @@ public class Subject {
     public void setName(String name) {
         this.name = name;
     }
+
+    @OneToMany(mappedBy = "subject")
+    Set<Exam> exams;
 
 }
