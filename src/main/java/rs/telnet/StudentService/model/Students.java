@@ -1,15 +1,28 @@
 package rs.telnet.StudentService.model;
 
-import javax.persistence.*;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "Students")
-public class Students {
+public class Students implements Serializable {
 
     @Id
-    @Column(name = "indexNumber")
-    private String indexNumber;
+    @Column(name = "index")
+    private String index;
 
     @Column(name="name")
     private String name;
@@ -20,38 +33,13 @@ public class Students {
     @Column(name="email")
     private String email;
 
-    public String getIndexNumber() {
-        return indexNumber;
+    @JsonIgnore
+    public List<Exam> getExams() {
+        return exams;
     }
 
-    public void setIndexNumber(String indexNumber) {
-        this.indexNumber = indexNumber;
-    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "students")
+    public List<Exam> exams ;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @OneToMany(mappedBy = "student")
-    Set<Exam> exams;
 }

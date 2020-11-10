@@ -1,8 +1,19 @@
 package rs.telnet.StudentService.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "subject")
 public class Subject {
@@ -14,24 +25,8 @@ public class Subject {
     @Column(name="name")
     private String name;
 
-
-    public int id() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @OneToMany(mappedBy = "subject")
-    Set<Exam> exams;
+    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "subject")
+    private List<Exam> exams;
 
 }
