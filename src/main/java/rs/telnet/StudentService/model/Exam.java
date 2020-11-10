@@ -1,52 +1,34 @@
 package rs.telnet.StudentService.model;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.io.Serializable;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@IdClass(Exam.class)
 @Table(name = "exam")
-public class Exam {
+public class Exam implements Serializable {
+
+    public EntityManager entityManager;
+
 
     @Column(name = "grade")
     private int grade;
 
+    @JsonManagedReference
     @Id
-    @Column(name = "student_index")
-    private int  student_index;
-
-    @Id
-    @Column(name = "subject_id")
-    private int subject_id;
-
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
-    public int getStudent_index() {
-        return student_index;
-    }
-
-    public void setStudent_index(int student_index) {
-        this.student_index = student_index;
-    }
-
-    public int getSubject_id() {
-        return subject_id;
-    }
-
-    public void setSubject_id(int subject_id) {
-        this.subject_id = subject_id;
-    }
-
-    @ManyToOne
-    @MapsId("studentsIndexNumber")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "index_number")
-    Students student;
+    Students students;
 
-    @ManyToOne
-    @MapsId("subjectId")
-    @JoinColumn(name = "id")
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
     Subject subject;
+
 }
