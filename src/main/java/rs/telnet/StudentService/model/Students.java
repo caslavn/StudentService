@@ -18,7 +18,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "Students")
-public class Students implements Serializable {
+public class Students  implements Serializable{
 
     @Id
     @Column(name = "index")
