@@ -1,5 +1,4 @@
 package rs.telnet.StudentService.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,9 +12,6 @@ import java.io.Serializable;
 @IdClass(Exam.class)
 @Table(name = "exam")
 public class Exam implements Serializable {
-
-    public EntityManager entityManager;
-
 
     @Column(name = "grade")
     private int grade;

@@ -6,29 +6,22 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import rs.telnet.StudentService.dto.ExamResponse;
 import rs.telnet.StudentService.model.Exam;
+import rs.telnet.StudentService.model.Students;
+import rs.telnet.StudentService.model.Subject;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface ExamRepository extends JpaRepository<Exam, String> {
 
-    /*@Query( value = "select st.name , st.surname, ex.grade, su.name" +
-            "from students s " +
-            "join exam ex " +
-            "   on st.index_number = ex.index_number " +
-            "join subject su " +
-            "   on su.id = ex.subject_id ",
-            nativeQuery = true)
-    List<Exam> queryBy(@Param("students_id") String indexNumber,
-                       @Param("subject_id") int id);
-
-    @Query(value = "SELECT * FROM exam bs WHERE " +
-            "EXISTS (SELECT 1 FROM customer st WHERE ex.students_id = st.id AND st.index = :index) " +
-            "AND EXISTS (SELECT 1 FROM subject sb WHERE sb.id = sb.subject_id AND sb.name IN :name)",
-            nativeQuery = true)
-    List<Exam> queryBy(@Param("students_id") String index,
-                       @Param("subject_id") int id);*/
-
-
+    @Query("select new rs.telnet.StudentService.dto.ExamResponse (st.name, st.surname, ex.grade, su.subject_name) " +
+            "from Students st " +
+            "join Exam ex " +
+            "on st.index = ex.students " +
+            "join Subject su " +
+            "on su.id = ex.subject ")
+    public List<ExamResponse> findAllExams();
 
 }

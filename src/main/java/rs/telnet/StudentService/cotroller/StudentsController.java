@@ -1,19 +1,10 @@
 package rs.telnet.StudentService.cotroller;
 
-
-import com.fasterxml.jackson.databind.util.ClassUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.telnet.StudentService.model.Exam;
 import rs.telnet.StudentService.model.Students;
-import rs.telnet.StudentService.repository.ExamRepository;
 import rs.telnet.StudentService.repository.StudentsRepository;
-import rs.telnet.StudentService.repository.SubjectRepository;
-import rs.telnet.StudentService.service.StudentsService;
 
-import javax.lang.model.element.Name;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +15,6 @@ public class StudentsController extends Students {
 
     @Autowired
     StudentsRepository studentsRepository;
-    @Autowired
-    StudentsService studentsService;
 
     @GetMapping("/get-all-students")
     public List<Students> getAllStudents(){
@@ -51,7 +40,7 @@ public class StudentsController extends Students {
     }
 
     @GetMapping("/get-names")
-    public List<Students> getNameBy(@RequestParam("name") String name){
-        return studentsService.getByName(name);
+    public List<Students> getAllNames() {
+        return studentsRepository.getNames();
     }
 }
