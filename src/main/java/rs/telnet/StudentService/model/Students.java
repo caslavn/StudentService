@@ -1,13 +1,10 @@
 package rs.telnet.StudentService.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -40,6 +37,5 @@ public class Students  implements Serializable{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "students")
     public List<Exam> exams ;
-
 
 }

@@ -24,4 +24,5 @@ public interface ExamRepository extends JpaRepository<Exam, String> {
             "on su.id = ex.subject ")
     public List<ExamResponse> findAllExams();
 
+
 }

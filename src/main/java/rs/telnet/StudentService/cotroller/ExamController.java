@@ -16,14 +16,7 @@ public class ExamController {
     @Autowired
     ExamRepository examRepository;
 
-
-    //@GetMapping("/get-all")
-    //public List<Exam> getAllExam(){
-     //   List<Exam> examList = examRepository.findAll();
-    //    return examList;
-    //}
-
-    @GetMapping("/getAllExams")
+    @GetMapping("/get-all-exams")
     public List<ExamResponse> getAllExams() {
        return examRepository.findAllExams();
     }
