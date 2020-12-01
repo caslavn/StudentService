@@ -32,7 +32,7 @@ public interface ExamRepository extends JpaRepository<Exam, String> {
             "on st.index = ex.students " +
             "join Subject su " +
             "on su.id = ex.subject " +
-            "where ex.grade < 6 ")
+            "where ex.grade = 5 ")
     public List<GradeResponse> findStudentsWhoFailed();
 
 }
