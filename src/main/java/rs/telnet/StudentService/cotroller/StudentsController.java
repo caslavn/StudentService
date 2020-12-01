@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rs.telnet.StudentService.model.Students;
 import rs.telnet.StudentService.repository.StudentsRepository;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +27,8 @@ public class StudentsController extends Students {
         return saveStudents;
     }
 
-    @DeleteMapping("/delete-students/{indexNumber}")
-    public Map<String, Boolean> deleteStudents(@PathVariable(value = "id") String studentsId)
+    @DeleteMapping("/delete-students")
+    public Map<String, Boolean> deleteStudents(@RequestParam(value = "index") String studentsId)
     {
         Students students = studentsRepository.findById(studentsId).get();
 
@@ -39,8 +38,4 @@ public class StudentsController extends Students {
         return response;
     }
 
-    @GetMapping("/get-names")
-    public List<Students> getAllNames() {
-        return studentsRepository.getNames();
-    }
 }
