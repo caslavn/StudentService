@@ -15,19 +15,19 @@ public class StudentsController extends Students {
     @Autowired
     StudentsRepository studentsRepository;
 
-    @GetMapping("/get-all-students")
+    @GetMapping("/student")
     public List<Students> getAllStudents(){
         List<Students> allStudentslist = studentsRepository.findAll();
         return allStudentslist;
     }
 
-    @PostMapping("/create-students")
+    @PostMapping("/student")
     public Students createStudents(@RequestBody Students students) {
         Students saveStudents = studentsRepository.save(students);
         return saveStudents;
     }
 
-    @DeleteMapping("/delete-students")
+    @DeleteMapping("/student")
     public Map<String, Boolean> deleteStudents(@RequestParam(value = "index") String studentsId)
     {
         Students students = studentsRepository.findById(studentsId).get();
