@@ -20,12 +20,12 @@ public class ExamController {
     @Autowired
     ExamRepository examRepository;
 
-    @GetMapping("/get-all-exams")
+    @GetMapping("/exam")
     public List<ExamResponse> getAllExams() {
        return examRepository.findAllExams();
     }
 
-    @GetMapping("/get-students-who-failed")
+    @GetMapping("/students-who-failed")
     public List<GradeResponse> getStudentsWhoFailed() {
         return examRepository.findStudentsWhoFailed();
     }
