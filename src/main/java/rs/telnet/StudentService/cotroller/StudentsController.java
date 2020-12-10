@@ -9,25 +9,25 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/api/student")
 public class StudentsController extends Students {
 
     @Autowired
     StudentsRepository studentsRepository;
 
-    @GetMapping("/student")
+    @GetMapping
     public List<Students> getAllStudents(){
         List<Students> allStudentslist = studentsRepository.findAll();
         return allStudentslist;
     }
 
-    @PostMapping("/student")
+    @PostMapping
     public Students createStudents(@RequestBody Students students) {
         Students saveStudents = studentsRepository.save(students);
         return saveStudents;
     }
 
-    @DeleteMapping("/student")
+    @DeleteMapping
     public Map<String, Boolean> deleteStudents(@RequestParam(value = "index") String studentsId)
     {
         Students students = studentsRepository.findById(studentsId).get();
