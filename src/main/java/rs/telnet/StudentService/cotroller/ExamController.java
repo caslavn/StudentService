@@ -20,7 +20,7 @@ public class ExamController {
     @Autowired
     ExamRepository examRepository;
 
-    @GetMapping("/exam")
+    @GetMapping
     public List<ExamResponse> getAllExams() {
        return examRepository.findAllExams();
     }
