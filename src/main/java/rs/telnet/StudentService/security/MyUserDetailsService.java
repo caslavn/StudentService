@@ -1,11 +1,11 @@
 package rs.telnet.StudentService.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import rs.telnet.StudentService.model.User;
 import rs.telnet.StudentService.repository.UserRepository;
 
 import java.util.Optional;
@@ -19,6 +19,8 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByEmail(email);
-        return new MyUserDetails(user);
+        return user.map(MyUserDetails::new).get();
+
+        //return new MyUserDetails(user);
     }
 }

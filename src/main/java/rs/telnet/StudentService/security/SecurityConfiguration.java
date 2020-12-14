@@ -24,14 +24,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/api/student").hasRole("USER")
+                .and().formLogin();
+
+                /*.authenticated()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .anyRequest().permitAll()
+                .and()
+                .httpBasic()
+                .and().formLogin();*/
+    }
+
+    /*@Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 .and().formLogin();
-    }
+    }*/
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){
