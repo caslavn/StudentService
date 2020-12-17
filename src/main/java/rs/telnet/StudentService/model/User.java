@@ -39,14 +39,4 @@ public class User {
         return id;
     }
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    //public List<UserRole> userRoles;
-
-    /*public List<String> getRoleList(){
-        if(this.role.length()>0){
-            return Arrays.asList(this.role.split(","));
-        }
-        return new ArrayList<>();
-    }*/
-
 }

@@ -27,5 +27,4 @@ public class MyUserDetailsService implements UserDetailsService {
         return new MyUserDetails(user);
     }
 
-        //return user.map(MyUserDetails::new).get();
 }

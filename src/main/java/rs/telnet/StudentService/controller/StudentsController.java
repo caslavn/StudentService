@@ -1,4 +1,4 @@
-package rs.telnet.StudentService.cotroller;
+package rs.telnet.StudentService.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +21,13 @@ public class StudentsController extends Students {
         return allStudentslist;
     }
 
-    @PostMapping
+    @PostMapping("/admin")
     public Students createStudents(@RequestBody Students students) {
         Students saveStudents = studentsRepository.save(students);
         return saveStudents;
     }
 
-    @DeleteMapping
+    @DeleteMapping("/admin")
     public Map<String, Boolean> deleteStudents(@RequestParam(value = "index") String studentsId)
     {
         Students students = studentsRepository.findById(studentsId).get();
