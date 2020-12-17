@@ -59,17 +59,4 @@ public class MyUserDetails implements UserDetails {
         return true;
     }
 
-
-    /*private String email;
-    private String password;
-    private String role;
-    private List<GrantedAuthority> authorities;
-
-    public MyUserDetails(User user){
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.authorities = Arrays.stream(user.getRole().split(""))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
-    }*/
 }
