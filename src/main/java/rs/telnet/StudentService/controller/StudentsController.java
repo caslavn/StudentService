@@ -27,7 +27,7 @@ public class StudentsController extends Students {
         return saveStudents;
     }
 
-    @DeleteMapping("/admin")
+    @DeleteMapping("/admin ")
     public Map<String, Boolean> deleteStudents(@RequestParam(value = "index") String studentsId)
     {
         Students students = studentsRepository.findById(studentsId).get();
