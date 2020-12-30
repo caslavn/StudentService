@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet  author="caslav"  id="1">
+        <createTable tableName="user">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(50)"/>
+            <column name="password" type="varchar(100)"/>
+            <column name="email" type="varchar(50)"/>
+            <column name="enabled" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="caslav" id="2">
+        <insert tableName="user">
+            <column name="id" value="1"/>
+            <column name="username" value="ivasavic"/>
+            <column name="password" value="$2a$04$ylPCVZf0idUFvqTyYxPPZeYPaPCghM99Oe9XQu.ks7KXoZIQLmiuK"/>
+            <column name="email" value="iva.savic@gmail.com"/>
+            <column name="enabled" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="caslav" id="3">
+        <insert tableName="user">
+            <column name="id" value="2"/>
+            <column name="username" value="nikolajovic"/>
+            <column name="password" value="$2a$04$NWWWLGwqGq7SkVWmvumgKudsRbEusMTxRNWbgeSdGfNdM7Ej5GY9."/>
+            <column name="email" value="nikola.jovic@gmail.com"/>
+            <column name="enabled" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
