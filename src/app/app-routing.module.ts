@@ -1,15 +1,18 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule} from "@angular/router";
-import { StudentComponent } from "./student/student.component";
+import { Routes, RouterModule } from "@angular/router";
+import { LoginComponent } from "./login/login.component";
+import { StudentsComponent } from "./students/students.component";
 
-const routes: Routes = [
-    { path: 'student', component: StudentComponent }
-  
-  ];
+const routes: Routes= [
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'api/students', component: StudentsComponent },
+];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 
 })
-export class AppRoutingModule{}
+export class AppRoutingModule { }
