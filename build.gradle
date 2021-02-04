@@ -15,6 +15,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.liquibase:liquibase-core'
+  implementation 'io.jsonwebtoken:jjwt:0.2'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -24,6 +27,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+  compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.2.RELEASE'
+  compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+  compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.3'
 }
 
 test {
