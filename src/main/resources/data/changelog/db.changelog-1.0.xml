@@ -28,6 +28,7 @@
     </changeSet>
 
     <changeSet author="caslav" id="3">
+      <validCheckSum>8:5c10f3016d8186f278bd23b381e5303a</validCheckSum>
         <insert tableName="user">
             <column name="id" value="2"/>
             <column name="username" value="nikolajovic"/>
