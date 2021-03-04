@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.telnet.StudentService.model.Students;
 import rs.telnet.StudentService.repository.StudentsRepository;
@@ -57,12 +58,14 @@ public class StudentsController extends Students {
          }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/admin")
     public Students createStudents(@RequestBody Students students) {
         Students saveStudents = studentsRepository.save(students);
         return saveStudents;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/admin")
     public Map<String, Boolean> deleteStudents(@RequestParam(value = "index") String studentsId) {
         Students students = studentsRepository.findById(studentsId).get();
