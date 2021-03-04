@@ -59,7 +59,7 @@ public class StudentsController extends Students {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/admin")
+    @PostMapping
     public Students createStudents(@RequestBody Students students) {
         Students saveStudents = studentsRepository.save(students);
         return saveStudents;
