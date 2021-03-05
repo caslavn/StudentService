@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from './login.service';
+import { Subject } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +12,27 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  form: any = {};
+  isLoading: Subject<boolean> = this.ls.isLoading;
 
-  constructor(private router: Router, public http: HttpClient, public ls: LoginService) { }
+  constructor(private aS: AuthService, private router: Router, private ls: LoadingService) { }
 
-  ngOnInit(): void {
-  }
-  public onLoginClick() {
-    this.router.navigate(['api/students']);
-  }
-  doLogin() {
-    let resp = this.ls.login(this.username, this.password);
-    resp.subscribe(data => {
-      console.log(data)
-    })
+  ngOnInit() {
+
   }
 
-}
+  onSubmit() {
+    this.aS.login(this.form).subscribe(
+      res => {
+        if (this.aS.isLoggedIn) {
+          this.router.navigate(['api/students']);
+        } else{
+          err => console.log(err)
+        }
+      }
+    )};
+
+
+
+  }
+  

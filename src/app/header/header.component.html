@@ -1,0 +1,14 @@
+<nav>
+  <ul>
+     <li><a href="api/students/">Student list</a></li> <br>
+     <li><a href="api/student/admin">Admin</a></li>
+  </ul>
+  <a class="button" href="">
+    <div class="logout" (click)="logout()">LogOut</div>
+  </a>
+</nav>
+<div *ngIf="isLoading | async" class="progress">
+  <div  class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  
+</div>
+<br>

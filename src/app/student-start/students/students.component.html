@@ -1,0 +1,35 @@
+<app-header></app-header>
+<br>
+<div class="container">
+  <div class="col-md-12">
+    <input class="form-control mr-sm-2" type="search" placeholder="Enter name to search" name="searchValue"
+      [(ngModel)]="searchValue">
+    <br>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students | searchfilter: searchValue ">
+         <!-- <td><input type="checkbox" false (change)="onchange()" name="{{student.index}}" [(ngModel)]="student.selected"></td> -->
+         
+         <td scope="row" ><span>{{student.index}}</span></td>
+          <td><span>{{student.name}}</span></td>
+          <td><span>{{student.surname}}</span></td>
+          <td><span>{{student.email}}</span></td>
+          <td><a [routerLink]="['/api/exam/']">Polozeni</a> <br>
+            <a [routerLink]="['/api/exam/students-who-failed']">Nepolozeni</a>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

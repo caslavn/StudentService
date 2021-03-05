@@ -1,0 +1,28 @@
+<app-header></app-header>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+
+            <th>Subject name</th>
+            <th>Garde</th>
+            <th>Name</th>
+            <th>Surname</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let exam of exams" >
+            <td><span>{{exam.subject_name}}</span></td>
+            <td><span>{{exam.grade }}</span></td>
+            <td><span>{{exam.name}}</span></td>
+            <td><span>{{exam.surname}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

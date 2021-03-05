@@ -1,15 +1,22 @@
-<form >
-    <div class="container">
-      <div class="form-group">
-      <label id="l" for="uname"><b>Username</b></label><br>
-      <input type="text" placeholder="Enter Username" name="uname" required> <br>
-      </div>
-      <label id="l" for="psw"><b>Password</b></label> <br>
-      <input type="password" placeholder="Enter Password" name="psw" required> <br>
-          
-      <button (click)="onLoginClick()" (click)="doLogin()" type="submit">Login</button> <br>
-      <button type="button" class="cancelbtn">Cancel</button>
-      
+<div *ngIf="isLoading | async" class="progress">
+  <div class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<br>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <div class="container">
+    <div class="form-group">
+      <label id="l" for="username"><b>Username</b></label><br>
+      <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required
+        placeholder="Enter Username" #username="ngModel"><br>
     </div>
-  </form>
- 
+    <label id="l" for="password"><b>Password</b></label> <br>
+    <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+      placeholder="Enter Password" #password="ngModel">
+
+    <div class="form-group">
+      <button type="submit" routerLinkActive="active">Login</button>
+    </div>
+    <button type="button" class="cancelbtn" >Cancel</button>
+  </div>
+</form>
+

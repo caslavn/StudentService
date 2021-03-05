@@ -1,0 +1,70 @@
+<app-header></app-header>
+<br>
+<div class="container">
+  <div class="col-md-12">
+    <input class="form-control mr-sm-2" type="search" placeholder="Enter name to search" name="searchValue"
+      [(ngModel)]="searchValue">
+    <br>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th> <button class="btn btn-primary" (click)="open(content)"><i class="fa fa-plus"></i></button></th>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students | searchfilter: searchValue ">
+         <!-- <td><input type="checkbox" false (change)="onchange()" name="{{student.index}}" [(ngModel)]="student.selected"></td> -->
+          <td><button class="btn btn-danger" (click)="deleteStudent(student)"> <i class="fa fa-trash"></i></button></td>
+         <td scope="row" ><span>{{student.index}}</span></td>
+          <td><span>{{student.name}}</span></td>
+          <td><span>{{student.surname}}</span></td>
+          <td><span>{{student.email}}</span></td>
+          <td><a [routerLink]="['/api/exam/']">Polozeni</a> <br>
+            <a [routerLink]="['/api/exam/students-who-failed']">Nepolozeni</a>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #studentForm="ngForm">
+      <div class="form-group">
+        <label>Index</label>
+        <input type="text" class="form-control" name="index" #index placeholder="Insert index" ngModel required>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="name" class="form-control" name="name" #name placeholder="Insert name" ngModel required>
+        <!-- <small class="form-text text-muted" *ngIf="hotelphone.touched && !hotelphone.valid">Must be number</small> -->
+      </div>
+      <div class="form-group">
+        <label>Surname</label>
+        <input type="surname" class="form-control"name="surname" #surname placeholder="Insert surname" ngModel required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" #email placeholder="Insert email" ngModel email required #semail="ngModel">
+        <small class="form-text text-muted" *ngIf="semail.touched && !semail.valid">Email must contain
+          @!</small>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="modal.close('Save click')" [disabled]="!studentForm.valid" (click)="insertStudent(studentForm.value)">Save </button>
+  </div>
+</ng-template>

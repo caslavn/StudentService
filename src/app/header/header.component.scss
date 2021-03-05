@@ -1,0 +1,82 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400);
+
+nav{
+  display: flex;
+  height: 50px;
+  width: 100%;
+  background: #414040;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px 0px;
+  flex-wrap: wrap;
+}
+nav ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+nav ul li a{
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+nav ul li a.active,
+nav ul li a:hover{
+  color: #111;
+  background: #fff;
+}
+nav .menu-btn i{
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+
+.topnav{
+  width: 100%;
+}
+
+.logout {
+  font-size: .8em;
+  font-family: sans-serif;
+	position: relative;
+  right: -10px;
+  overflow: hidden;
+  letter-spacing: 3px;
+  opacity: 0;
+  transition: opacity .45s;
+  -webkit-transition: opacity .35s;
+  
+}
+
+.button {
+	text-decoration: none;
+	float: right;
+  padding: 10px;
+  margin-top: -10px;
+  color: white;
+  width: 0px;
+  background-color: rgb(0, 125, 228);
+  transition: width .35s;
+  -webkit-transition: width .35s;
+  overflow: hidden
+}
+
+a:hover {
+  width: 100px;
+}
+
+a:hover .logout{
+  opacity: .9;
+}
+
+a {
+  text-decoration: none;
+}
+

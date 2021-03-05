@@ -1,0 +1,24 @@
+<app-header></app-header>
+<br>
+
+<div class="col-md-12">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>Subject name</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of subjects; let exam of exams ">
+                <td><span>{{subject.subject_name}}</span></td>
+                <td><span>{{exam.name}}</span></td>
+                <td><span>{{exam.surname}}</span></td>
+                
+            </tr>
+           
+        </tbody>
+    </table>
+</div>

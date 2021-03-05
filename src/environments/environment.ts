@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  API: "https://studentservice.herokuapp.com/api/student",
-  API2: "https://studentservice.herokuapp.com/login"
+  api: "https://studentservice.herokuapp.com",
+  token: {
+    expires_in: 3600000}
+
 };
 
 /*
